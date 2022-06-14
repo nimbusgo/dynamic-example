@@ -1,0 +1,7 @@
+{
+  "fabricName" : "demos",
+  "SOURCE_PATH" : "dbfs:/Prophecy/nimbus@simpledatalabs.com/CustomersDatasetInput.csv",
+  "TRANSFORM_SQL" : "select * from source_data",
+  "PLACE_HOLDER" : "select upper(first_name) as first_name, * except(first_name) from source_data",
+  "TARGET_PATH" : "dbfs:/Prophecy/nimbus@simpledatalabs.com/scratch/target"
+}

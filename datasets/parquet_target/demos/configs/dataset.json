@@ -1,0 +1,1 @@
+{"format":"parquet","path":"${TARGET_PATH}","writeMode":null,"compression":null,"datetimeRebaseMode":null,"recursiveFileLookup":null,"partitionColumns":null,"schema":{"type":"struct","fields":[]},"mergeSchema":null,"modifiedBefore":null,"pathGlobFilter":null,"int96RebaseMode":null,"datasetType":"File","useSchema":false,"modifiedAfter":null}

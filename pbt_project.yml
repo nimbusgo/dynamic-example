@@ -1,0 +1,73 @@
+name: dynamic-example
+description: ''
+version: 0.0.1
+author: nimbus@simpledatalabs.com
+language: scala
+pipelines:
+  pipelines/generic_transform:
+    name: generic_transform
+    description: ''
+    author: nimbus@simpledatalabs.com
+    mode: batch
+    language: scala
+    createdAt: '2022-06-13 21:12:18'
+    datasets:
+      inputs:
+      - 1611/datasets/generic_csv_source
+      outputs:
+      - 1611/datasets/parquet_target
+    dependencies: {}
+datasets:
+  datasets/generic_parquet_src:
+    name: generic_parquet_src
+    description: ''
+    author: nimbus@simpledatalabs.com
+    createdAt: '2022-06-13 21:13:31'
+    physicalDatasets:
+      dev:
+        fabricId: 51
+        datasetType: File
+        description: ''
+        author: nimbus@simpledatalabs.com
+        createdAt: '2022-06-13 21:13:31'
+      demos:
+        fabricId: 382
+        datasetType: File
+        description: ''
+        author: nimbus@simpledatalabs.com
+        createdAt: '2022-06-13 21:13:38'
+  datasets/generic_csv_source:
+    name: generic_csv_source
+    description: ''
+    author: nimbus@simpledatalabs.com
+    createdAt: '2022-06-13 21:17:35'
+    physicalDatasets:
+      demos:
+        fabricId: 382
+        datasetType: File
+        description: ''
+        author: nimbus@simpledatalabs.com
+        createdAt: '2022-06-13 21:17:35'
+      test:
+        fabricId: 139
+        datasetType: File
+        description: ''
+        author: nimbus@simpledatalabs.com
+        createdAt: '2022-06-13 22:14:22'
+  datasets/parquet_target:
+    name: parquet_target
+    description: ''
+    author: nimbus@simpledatalabs.com
+    createdAt: '2022-06-14 19:46:07'
+    physicalDatasets:
+      demos:
+        fabricId: 382
+        datasetType: File
+        description: ''
+        author: nimbus@simpledatalabs.com
+        createdAt: '2022-06-14 19:46:07'
+jobs: {}
+libraries: []
+subgraphs: {}
+dependencies: []
+template: '[]'

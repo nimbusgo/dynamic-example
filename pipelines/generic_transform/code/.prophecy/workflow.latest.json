@@ -1,0 +1,179 @@
+{
+  "metainfo" : {
+    "id" : "1",
+    "language" : "scala",
+    "fabricId" : "382",
+    "frontEndLanguage" : "sql",
+    "mode" : "batch",
+    "interimMode" : "Full",
+    "udfs" : {
+      "language" : "scala",
+      "udfs" : [ ]
+    },
+    "udafs" : {
+      "language" : "scala",
+      "code" : "package udfs\n\nimport org.apache.spark.sql.expressions._\nimport org.apache.spark.sql.types._\nimport org.apache.spark.sql._\n\n/**\n  * Here you can define your custom aggregate functions.\n  *\n  * Make sure to register your `udafs` in the register_udafs function below.\n  *\n  * Example:\n  *\n  * object GeometricMean extends UserDefinedAggregateFunction {\n  *   // This is the input fields for your aggregate function.\n  *   override def inputSchema: org.apache.spark.sql.types.StructType =\n  *     StructType(StructField(\"value\", DoubleType) :: Nil)\n  *\n  *   // This is the internal fields you keep for computing your aggregate.\n  *   override def bufferSchema: StructType = StructType(\n  *     StructField(\"count\", LongType) ::\n  *     StructField(\"product\", DoubleType) :: Nil\n  *   )\n  *\n  *   // This is the output type of your aggregatation function.\n  *   override def dataType: DataType = DoubleType\n  *\n  *   override def deterministic: Boolean = true\n  *\n  *   // This is the initial value for your buffer schema.\n  *   override def initialize(buffer: MutableAggregationBuffer): Unit = {\n  *     buffer(0) = 0L\n  *     buffer(1) = 1.0\n  *   }\n  *\n  *   // This is how to update your buffer schema given an input.\n  *   override def update(buffer: MutableAggregationBuffer, input: Row): Unit = {\n  *     buffer(0) = buffer.getAs[Long](0) + 1\n  *     buffer(1) = buffer.getAs[Double](1) * input.getAs[Double](0)\n  *   }\n  *\n  *   // This is how to merge two objects with the bufferSchema type.\n  *   override def merge(buffer1: MutableAggregationBuffer, buffer2: Row): Unit = {\n  *     buffer1(0) = buffer1.getAs[Long](0) + buffer2.getAs[Long](0)\n  *     buffer1(1) = buffer1.getAs[Double](1) * buffer2.getAs[Double](1)\n  *   }\n  *\n  *   // This is where you output the final value, given the final value of your bufferSchema.\n  *   override def evaluate(buffer: Row): Any = {\n  *     math.pow(buffer.getDouble(1), 1.toDouble / buffer.getLong(0))\n  *   }\n  * }\n  *\n  */\n\n\nobject UDAFs {\n  /**\n    * Registers UDAFs with Spark SQL\n    */\n  def registerUDAFs(spark: SparkSession): Unit = {\n    /**\n      * Example:\n      *\n      * spark.udf.register(\"gm\", GeometricMean)\n      *\n      */\n\n\n  }\n}\n"
+    },
+    "configuration" : {
+      "common" : {
+        "type" : "record",
+        "fields" : [ {
+          "name" : "SOURCE_PATH",
+          "kind" : {
+            "type" : "string",
+            "value" : "dbfs:/Prophecy/nimbus@simpledatalabs.com/CustomersDatasetInput.csv"
+          },
+          "optional" : false
+        }, {
+          "name" : "TRANSFORM_SQL",
+          "kind" : {
+            "type" : "string",
+            "value" : "select * from source_data"
+          },
+          "optional" : false
+        }, {
+          "name" : "PLACE_HOLDER",
+          "kind" : {
+            "type" : "string",
+            "value" : "select upper(first_name) as first_name, * except(first_name) from source_data"
+          },
+          "optional" : false
+        }, {
+          "name" : "TARGET_PATH",
+          "kind" : {
+            "type" : "string",
+            "value" : "dbfs:/Prophecy/nimbus@simpledatalabs.com/scratch/target"
+          },
+          "optional" : false
+        } ]
+      },
+      "fabrics" : {
+        "dev" : {
+          "type" : "record",
+          "fields" : [ ]
+        },
+        "test" : {
+          "type" : "record",
+          "fields" : [ ]
+        },
+        "Remove" : {
+          "type" : "record",
+          "fields" : [ ]
+        },
+        "demos" : {
+          "type" : "record",
+          "fields" : [ ]
+        }
+      }
+    },
+    "sparkConf" : [ ],
+    "hadoopConf" : [ ],
+    "codeMode" : "sparse",
+    "buildSystem" : "maven",
+    "externalDependencies" : [ ]
+  },
+  "connections" : [ {
+    "id" : "WXCaI_8SaUTehuIdT-tIz",
+    "source" : "_t5NdKZ2Q9WYeJQzEUPWa$$z2YLVjA0-wnmqzjl_Lme-",
+    "sourcePort" : "JbxraSNXX-Fk1F5pKuAab$$yvCbVee_W8O9AtZ-QsOxX",
+    "target" : "LdUmcqpDurIH9D-K8PkfR$$919MF6MdxR9hmjcUbgzWn",
+    "targetPort" : "99K7VwlmDYBljpGzcP7x0$$9s_d5Nigds6mya7Dw0dRj"
+  }, {
+    "id" : "Iw-D-2p7IDAXb2E_-Iqn4",
+    "source" : "LdUmcqpDurIH9D-K8PkfR$$919MF6MdxR9hmjcUbgzWn",
+    "sourcePort" : "out",
+    "target" : "1t2Ymi4QtPGy9MveW_yud$$kKdSzAm04O54VckaWCkSA",
+    "targetPort" : "yuQKe4DPKgxdNPkWKeW51$$OLDe0Vl1Xvi6f-dIM8qYe"
+  } ],
+  "processes" : {
+    "_t5NdKZ2Q9WYeJQzEUPWa$$z2YLVjA0-wnmqzjl_Lme-" : {
+      "id" : "_t5NdKZ2Q9WYeJQzEUPWa$$z2YLVjA0-wnmqzjl_Lme-",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "Source_0",
+        "slug" : "Source_0",
+        "x" : 602,
+        "y" : 248.99999999999997,
+        "language" : "scala",
+        "phase" : 0,
+        "cache" : false,
+        "detailedStats" : false
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "JbxraSNXX-Fk1F5pKuAab$$yvCbVee_W8O9AtZ-QsOxX",
+          "slug" : "out"
+        } ],
+        "selectedInputFields" : [ ]
+      },
+      "properties" : {
+        "datasetId" : "1611/datasets/generic_csv_source"
+      }
+    },
+    "LdUmcqpDurIH9D-K8PkfR$$919MF6MdxR9hmjcUbgzWn" : {
+      "id" : "LdUmcqpDurIH9D-K8PkfR$$919MF6MdxR9hmjcUbgzWn",
+      "component" : "SQLStatement",
+      "metadata" : {
+        "label" : "SQLStatement_1",
+        "slug" : "SQLStatement_1",
+        "x" : 807,
+        "y" : 243,
+        "language" : "scala",
+        "phase" : 0,
+        "cache" : false,
+        "detailedStats" : false
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "99K7VwlmDYBljpGzcP7x0$$9s_d5Nigds6mya7Dw0dRj",
+          "slug" : "source_data"
+        } ],
+        "outputs" : [ {
+          "id" : "out",
+          "slug" : "out"
+        } ],
+        "selectedInputFields" : [ ]
+      },
+      "properties" : {
+        "fileTabs" : [ {
+          "path" : "out",
+          "id" : "out",
+          "language" : "sql",
+          "content" : "${TRANSFORM_SQL}"
+        } ],
+        "inputPortNames" : [ "source_data" ]
+      }
+    },
+    "1t2Ymi4QtPGy9MveW_yud$$kKdSzAm04O54VckaWCkSA" : {
+      "id" : "1t2Ymi4QtPGy9MveW_yud$$kKdSzAm04O54VckaWCkSA",
+      "component" : "Target",
+      "metadata" : {
+        "label" : "Target_1",
+        "slug" : "Target_1",
+        "x" : 1003,
+        "y" : 227.79999999999995,
+        "language" : "scala",
+        "phase" : 0,
+        "cache" : false,
+        "detailedStats" : false
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "yuQKe4DPKgxdNPkWKeW51$$OLDe0Vl1Xvi6f-dIM8qYe",
+          "slug" : "in"
+        } ],
+        "outputs" : [ ],
+        "selectedInputFields" : [ ]
+      },
+      "properties" : {
+        "datasetId" : "1611/datasets/parquet_target"
+      }
+    }
+  },
+  "ports" : {
+    "inputs" : [ ],
+    "outputs" : [ ],
+    "selectedInputFields" : [ ]
+  }
+}
