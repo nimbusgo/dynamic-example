@@ -7,17 +7,12 @@ import org.apache.spark.sql.functions._
 import org.apache.spark.sql.types._
 import config.ConfigStore._
 
-object Source_0 {
+object ParquetTarget {
 
-  def apply(spark: SparkSession): DataFrame = {
+  def apply(spark: SparkSession, in: DataFrame): Unit = {
     Config.fabricName match {
       case "demos" =>
-        spark.read
-          .format("csv")
-          .option("header",      true)
-          .option("inferSchema", true)
-          .option("sep",         ",")
-          .load(Config.SOURCE_PATH)
+        in.write.format("parquet").save(Config.TARGET_PATH)
       case _ =>
         throw new Exception("No valid dataset present to read fabric")
     }

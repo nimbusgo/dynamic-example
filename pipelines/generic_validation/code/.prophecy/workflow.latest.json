@@ -1,0 +1,204 @@
+{
+  "metainfo" : {
+    "id" : "1",
+    "language" : "scala",
+    "fabricId" : "382",
+    "frontEndLanguage" : "sql",
+    "mode" : "batch",
+    "interimMode" : "Full",
+    "udfs" : {
+      "language" : "scala",
+      "udfs" : [ ]
+    },
+    "udafs" : {
+      "language" : "scala",
+      "code" : "package udfs\n\nimport org.apache.spark.sql.expressions._\nimport org.apache.spark.sql.types._\nimport org.apache.spark.sql._\n\n/**\n  * Here you can define your custom aggregate functions.\n  *\n  * Make sure to register your `udafs` in the register_udafs function below.\n  *\n  * Example:\n  *\n  * object GeometricMean extends UserDefinedAggregateFunction {\n  *   // This is the input fields for your aggregate function.\n  *   override def inputSchema: org.apache.spark.sql.types.StructType =\n  *     StructType(StructField(\"value\", DoubleType) :: Nil)\n  *\n  *   // This is the internal fields you keep for computing your aggregate.\n  *   override def bufferSchema: StructType = StructType(\n  *     StructField(\"count\", LongType) ::\n  *     StructField(\"product\", DoubleType) :: Nil\n  *   )\n  *\n  *   // This is the output type of your aggregatation function.\n  *   override def dataType: DataType = DoubleType\n  *\n  *   override def deterministic: Boolean = true\n  *\n  *   // This is the initial value for your buffer schema.\n  *   override def initialize(buffer: MutableAggregationBuffer): Unit = {\n  *     buffer(0) = 0L\n  *     buffer(1) = 1.0\n  *   }\n  *\n  *   // This is how to update your buffer schema given an input.\n  *   override def update(buffer: MutableAggregationBuffer, input: Row): Unit = {\n  *     buffer(0) = buffer.getAs[Long](0) + 1\n  *     buffer(1) = buffer.getAs[Double](1) * input.getAs[Double](0)\n  *   }\n  *\n  *   // This is how to merge two objects with the bufferSchema type.\n  *   override def merge(buffer1: MutableAggregationBuffer, buffer2: Row): Unit = {\n  *     buffer1(0) = buffer1.getAs[Long](0) + buffer2.getAs[Long](0)\n  *     buffer1(1) = buffer1.getAs[Double](1) * buffer2.getAs[Double](1)\n  *   }\n  *\n  *   // This is where you output the final value, given the final value of your bufferSchema.\n  *   override def evaluate(buffer: Row): Any = {\n  *     math.pow(buffer.getDouble(1), 1.toDouble / buffer.getLong(0))\n  *   }\n  * }\n  *\n  */\n\n\nobject UDAFs {\n  /**\n    * Registers UDAFs with Spark SQL\n    */\n  def registerUDAFs(spark: SparkSession): Unit = {\n    /**\n      * Example:\n      *\n      * spark.udf.register(\"gm\", GeometricMean)\n      *\n      */\n\n\n  }\n}\n"
+    },
+    "configuration" : {
+      "common" : {
+        "type" : "record",
+        "fields" : [ {
+          "name" : "config",
+          "kind" : {
+            "type" : "string",
+            "value" : "{\"length_validations\": [  {\"column_name\": \"first_name\",   \"type_cast\": \"StringType\",   \"lengths\": [4]} ], \"date_conversions\": [], \"format_validations\": [] }"
+          },
+          "optional" : false
+        }, {
+          "name" : "SOURCE_PATH",
+          "kind" : {
+            "type" : "string",
+            "value" : "dbfs:/Prophecy/nimbus@simpledatalabs.com/CustomersDatasetInput.csv"
+          },
+          "optional" : false
+        }, {
+          "name" : "TARGET_PATH",
+          "kind" : {
+            "type" : "string",
+            "value" : "dbfs:/Prophecy/nimbus@simpledatalabs.com/scratch/target"
+          },
+          "optional" : false
+        } ]
+      },
+      "fabrics" : {
+        "dev" : {
+          "type" : "record",
+          "fields" : [ ]
+        },
+        "test" : {
+          "type" : "record",
+          "fields" : [ ]
+        },
+        "Remove" : {
+          "type" : "record",
+          "fields" : [ ]
+        },
+        "demos" : {
+          "type" : "record",
+          "fields" : [ ]
+        }
+      }
+    },
+    "sparkConf" : [ ],
+    "hadoopConf" : [ ],
+    "codeMode" : "sparse",
+    "buildSystem" : "maven",
+    "externalDependencies" : [ ]
+  },
+  "connections" : [ {
+    "id" : "6dwAjyoCaqMjQZra1o18c",
+    "source" : "xKZPwuqJdSkqGl_yYsBf0$$pi_f7qIK6wdubpB-WiHdR",
+    "sourcePort" : "AGj0KcB7rEtyuB2mOvDem$$oK31OON9vL6ISAtNAu0FU",
+    "target" : "Vj7k_6djHm7j1-Gbx_Der$$_da1KnJJ12S6MzNBha8FG",
+    "targetPort" : "kjjHgDCDddJ8XJje_RgV4$$zeK_vAsoFAe_ZBWzP4ZPT"
+  }, {
+    "id" : "O_IhNsUmDmZENNC_hQgZc",
+    "source" : "tz-CBwjAPRTbWMsTVOAf_$$Q2bS_x6T5j0NzYXmZFI9D",
+    "sourcePort" : "k7GQRHpxOSbpUPnvMK_-A$$9Puv9b9Dbe--lwQK0mIM6",
+    "target" : "Vj7k_6djHm7j1-Gbx_Der$$_da1KnJJ12S6MzNBha8FG",
+    "targetPort" : "x9r2ac5hRFjbUh71PJnRu$$VvtnQBx_JftNz10qzab4n"
+  }, {
+    "id" : "UhLeBhiWLCzKITfTYFbs_",
+    "source" : "Vj7k_6djHm7j1-Gbx_Der$$_da1KnJJ12S6MzNBha8FG",
+    "sourcePort" : "ey5igrzlALMsvsn8KuTg2$$ZHEBWF5iZwC4gViDZXkkE",
+    "target" : "MlDBFMuzM4Pjil5tKLT-t$$j1UbP6GQNCpy1ugwJjbTj",
+    "targetPort" : "K1zG5UBR_z0CuoL-M2fUd$$B3eDtPdqpxP-EgHBzefMi"
+  } ],
+  "processes" : {
+    "Vj7k_6djHm7j1-Gbx_Der$$_da1KnJJ12S6MzNBha8FG" : {
+      "id" : "Vj7k_6djHm7j1-Gbx_Der$$_da1KnJJ12S6MzNBha8FG",
+      "component" : "Script",
+      "metadata" : {
+        "label" : "Validate",
+        "slug" : "Validate",
+        "x" : 320.00008927439046,
+        "y" : 220,
+        "language" : "scala",
+        "phase" : 0,
+        "cache" : false,
+        "detailedStats" : false
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "kjjHgDCDddJ8XJje_RgV4$$zeK_vAsoFAe_ZBWzP4ZPT",
+          "slug" : "input_data"
+        }, {
+          "id" : "x9r2ac5hRFjbUh71PJnRu$$VvtnQBx_JftNz10qzab4n",
+          "slug" : "configDF"
+        } ],
+        "outputs" : [ {
+          "id" : "ey5igrzlALMsvsn8KuTg2$$ZHEBWF5iZwC4gViDZXkkE",
+          "slug" : "out0"
+        } ],
+        "selectedInputFields" : [ ]
+      },
+      "properties" : {
+        "script" : "import spark.implicits._\nimport scala.collection.mutable.WrappedArray\n\nval typeMappings = Map(\n    \"StringType\" -> StringType,\n    \"DecimalType\" -> DecimalType\n)\n\nval config = configDF.select(\"config\").collect().map(_.getAs[Row](\"config\"))\n\nval length_validations = config.flatMap(_.getAs[WrappedArray[Row]](\"length_validations\")).map{\n    case Row(column_name: String, type_cast: String, lengths: WrappedArray[Int]) => {\n        val format: Option[Any] = Some(typeMappings.getOrElse(type_cast, type_cast))\n        is_valid(col(column_name),formatInfo=format,len=Some(lengths.toSeq))\n    }\n    case _ => lit(true)\n}\n\nval date_conversions = config.flatMap(_.getAs[WrappedArray[Row]](\"date_conversions\")).map{\n    case Row(column_name: String, current_format: String, new_format: String) => {\n        val format = Some(List(current_format, new_format))\n        is_valid(col(column_name),formatInfo= format)\n    }\n    case _ => lit(true)\n}\n\nval format_validations = config.flatMap(_.getAs[WrappedArray[Row]](\"format_validations\")).map{\n    case Row(column_name: String, format: String) => {\n        is_valid(col(column_name),formatInfo= Some(typeMappings.getOrElse(format, format)))\n    }\n    case _ => lit(true)\n}\n\nval allValid = ((length_validations ++ date_conversions ++ format_validations) :+ lit(true)).reduce((exp, c) => exp.and(c))\n\nval out0 = input_data.filter(allValid)",
+        "scriptMethodHeader" : "def apply(spark: SparkSession, input_data: DataFrame, configDF: DataFrame): DataFrame = {",
+        "scriptMethodFooter" : "    out0\n}"
+      }
+    },
+    "tz-CBwjAPRTbWMsTVOAf_$$Q2bS_x6T5j0NzYXmZFI9D" : {
+      "id" : "tz-CBwjAPRTbWMsTVOAf_$$Q2bS_x6T5j0NzYXmZFI9D",
+      "component" : "Script",
+      "metadata" : {
+        "label" : "ParseConfig",
+        "slug" : "ParseConfig",
+        "x" : 120.00021563746199,
+        "y" : 320,
+        "language" : "scala",
+        "phase" : 0,
+        "cache" : false,
+        "detailedStats" : false
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "k7GQRHpxOSbpUPnvMK_-A$$9Puv9b9Dbe--lwQK0mIM6",
+          "slug" : "out0"
+        } ],
+        "selectedInputFields" : [ ]
+      },
+      "properties" : {
+        "script" : "\nval lengthValidationType = ArrayType(new StructType()\n  .add(\"column_name\", StringType)\n  .add(\"type_cast\", StringType)\n  .add(\"lengths\", ArrayType(IntegerType))\n)\n\nval dateValidationType = ArrayType(new StructType()\n  .add(\"column_name\", StringType)\n  .add(\"current_format\", StringType)\n  .add(\"new_format\", StringType)\n)\n\nval formatValidationType = ArrayType(new StructType()\n  .add(\"column_name\", StringType)\n  .add(\"format\", StringType)\n)\n\nval json_schema = StructType(\n          Array(\n            StructField(\"length_validations\", lengthValidationType, true),\n            StructField(\"date_conversions\", dateValidationType, true),\n            StructField(\"format_validations\", formatValidationType, true),\n          )\n        )\n\nval df = Seq(Config.config).toDF(\"json\")\nval out0 = df.withColumn(\"config\", from_json(col(\"json\"),json_schema))\n",
+        "scriptMethodHeader" : "def apply(spark: SparkSession): DataFrame = {",
+        "scriptMethodFooter" : "    out0\n}"
+      }
+    },
+    "xKZPwuqJdSkqGl_yYsBf0$$pi_f7qIK6wdubpB-WiHdR" : {
+      "id" : "xKZPwuqJdSkqGl_yYsBf0$$pi_f7qIK6wdubpB-WiHdR",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "GenericCsvSource",
+        "slug" : "GenericCsvSource",
+        "x" : 120.00018360472421,
+        "y" : 120,
+        "language" : "scala",
+        "phase" : 0,
+        "cache" : false,
+        "detailedStats" : false
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "AGj0KcB7rEtyuB2mOvDem$$oK31OON9vL6ISAtNAu0FU",
+          "slug" : "out"
+        } ],
+        "selectedInputFields" : [ ]
+      },
+      "properties" : {
+        "datasetId" : "1611/datasets/generic_csv_source"
+      }
+    },
+    "MlDBFMuzM4Pjil5tKLT-t$$j1UbP6GQNCpy1ugwJjbTj" : {
+      "id" : "MlDBFMuzM4Pjil5tKLT-t$$j1UbP6GQNCpy1ugwJjbTj",
+      "component" : "Target",
+      "metadata" : {
+        "label" : "ParquetTarget",
+        "slug" : "ParquetTarget",
+        "x" : 520.0007708159524,
+        "y" : 220,
+        "language" : "scala",
+        "phase" : 0,
+        "cache" : false,
+        "detailedStats" : false
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "K1zG5UBR_z0CuoL-M2fUd$$B3eDtPdqpxP-EgHBzefMi",
+          "slug" : "in"
+        } ],
+        "outputs" : [ ],
+        "selectedInputFields" : [ ]
+      },
+      "properties" : {
+        "datasetId" : "1611/datasets/parquet_target"
+      }
+    }
+  },
+  "ports" : {
+    "inputs" : [ ],
+    "outputs" : [ ],
+    "selectedInputFields" : [ ]
+  }
+}

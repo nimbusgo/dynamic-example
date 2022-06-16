@@ -12,8 +12,9 @@ object Main {
 
   def apply(spark: SparkSession): Unit = {
     val df_GenericCsvSource = GenericCsvSource(spark)
-    val df_GenericTransform = GenericTransform(spark, df_GenericCsvSource)
-    ParquetTarget(spark, df_GenericTransform)
+    val df_ParseConfig      = ParseConfig(spark)
+    val df_Validate         = Validate(spark, df_GenericCsvSource, df_ParseConfig)
+    ParquetTarget(spark, df_Validate)
   }
 
   def main(args: Array[String]): Unit = {

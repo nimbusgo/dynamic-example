@@ -1,0 +1,6 @@
+{
+  "fabricName" : "test",
+  "config" : "{\"length_validations\": [  {\"column_name\": \"first_name\",   \"type_cast\": \"StringType\",   \"lengths\": [4]} ], \"date_conversions\": [], \"format_validations\": [] }",
+  "SOURCE_PATH" : "dbfs:/Prophecy/nimbus@simpledatalabs.com/CustomersDatasetInput.csv",
+  "TARGET_PATH" : "dbfs:/Prophecy/nimbus@simpledatalabs.com/scratch/target"
+}

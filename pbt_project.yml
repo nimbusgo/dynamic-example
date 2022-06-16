@@ -17,6 +17,19 @@ pipelines:
       outputs:
       - 1611/datasets/parquet_target
     dependencies: {}
+  pipelines/generic_validation:
+    name: generic_validation
+    description: ''
+    author: nimbus@simpledatalabs.com
+    mode: batch
+    language: scala
+    createdAt: '2022-06-14 22:43:13'
+    datasets:
+      inputs:
+      - 1611/datasets/generic_csv_source
+      outputs:
+      - 1611/datasets/parquet_target
+    dependencies: {}
 datasets:
   datasets/generic_parquet_src:
     name: generic_parquet_src

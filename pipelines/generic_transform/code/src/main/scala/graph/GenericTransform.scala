@@ -9,7 +9,7 @@ import config.ConfigStore._
 import udfs.UDFs._
 import udfs._
 
-object SQLStatement_1 {
+object GenericTransform {
 
   def apply(spark: SparkSession, source_data: DataFrame): DataFrame = {
     source_data.createOrReplaceTempView("source_data")

@@ -7,7 +7,7 @@ import org.apache.spark.sql.functions._
 import org.apache.spark.sql.types._
 import config.ConfigStore._
 
-object Target_1 {
+object ParquetTarget {
 
   def apply(spark: SparkSession, in: DataFrame): Unit = {
     Config.fabricName match {
